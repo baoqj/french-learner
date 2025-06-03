@@ -1,0 +1,70 @@
+[
+  {
+    "scene": "Cafe",
+    "stages": [
+      {
+        "title": "Ordering Coffee",
+        "level": 1,
+        "dialogue": [
+          {
+            "fr": "Bonjour, je voudrais un café s'il vous plaît.",
+            "en": "Hello, I'd like a coffee please."
+          },
+          {
+            "fr": "Bien sûr, quelque chose d'autre?",
+            "en": "Sure, anything else?"
+          },
+          {
+            "fr": "Non merci.",
+            "en": "No thanks."
+          }
+        ],
+        "vocabulary": [
+          {
+            "fr": "bonjour",
+            "en": "hello",
+            "zh": "你好"
+          },
+          {
+            "fr": "café",
+            "en": "coffee",
+            "zh": "咖啡"
+          }
+        ],
+        "notes": "Learn how to order a coffee and greet politely."
+      }
+    ]
+  },
+  {
+    "scene": "Shopping",
+    "stages": [
+      {
+        "title": "Buying Clothes",
+        "level": 2,
+        "dialogue": [
+          {
+            "fr": "Combien coûte cette chemise?",
+            "en": "How much is this shirt?"
+          },
+          {
+            "fr": "Elle est à vingt euros.",
+            "en": "It's twenty euros."
+          }
+        ],
+        "vocabulary": [
+          {
+            "fr": "combien",
+            "en": "how much",
+            "zh": "多少"
+          },
+          {
+            "fr": "chemise",
+            "en": "shirt",
+            "zh": "衬衫"
+          }
+        ],
+        "notes": "Practice numbers and shopping vocabulary."
+      }
+    ]
+  }
+]

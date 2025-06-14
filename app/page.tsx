@@ -1,57 +1,68 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { AppProvider, useApp } from "@/contexts/app-context"
-import { HomePage } from "@/components/home-page"
-import { ScenarioPage } from "@/components/scenario-page"
-import { DialoguePage } from "@/components/dialogue-page"
-import { VocabularyPage } from "@/components/vocabulary-page"
-import { initializeSpeech } from "@/utils/speech"
+import { useState, useEffect } from "react";
+import { AppProvider, useApp } from "@/contexts/app-context";
+import { HomePage } from "@/components/home-page";
+import { ScenarioPage } from "@/components/scenario-page";
+import { DialoguePage } from "@/components/dialogue-page";
+import { VocabularyPage } from "@/components/vocabulary-page";
+import { initializeSpeech } from "@/utils/speech";
+import Header from "@/components/header";
 
-type Page = "home" | "scenarios" | "dialogue" | "vocabulary"
+type Page = "home" | "scenarios" | "dialogue" | "vocabulary";
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState<Page>("home")
-  const { scenarios, setCurrentScenario, currentScenario } = useApp()
+  const [currentPage, setCurrentPage] = useState<Page>("home");
+  const { scenarios, setCurrentScenario, currentScenario } = useApp();
 
   // Initialize speech synthesis
   useEffect(() => {
-    initializeSpeech()
-  }, [])
+    initializeSpeech();
+  }, []);
 
   const handleNavigate = (page: Page) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
   const handleSelectScenario = (scenarioId: string) => {
-    const scenario = scenarios.find((s) => s.id === scenarioId)
+    const scenario = scenarios.find((s) => s.id === scenarioId);
     if (scenario) {
-      setCurrentScenario(scenario)
-      setCurrentPage("dialogue")
+      setCurrentScenario(scenario);
+      setCurrentPage("dialogue");
     }
-  }
+  };
 
   const handleBack = () => {
     if (currentPage === "dialogue") {
-      setCurrentPage("scenarios")
+      setCurrentPage("scenarios");
     } else {
-      setCurrentPage("home")
+      setCurrentPage("home");
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen">
+    <div className='min-h-screen'>
+      <Header />
+
       {currentPage === "home" && <HomePage onNavigate={handleNavigate} />}
 
-      {currentPage === "scenarios" && <ScenarioPage onBack={handleBack} onSelectScenario={handleSelectScenario} />}
+      {currentPage === "scenarios" && (
+        <ScenarioPage
+          onBack={handleBack}
+          onSelectScenario={handleSelectScenario}
+        />
+      )}
 
       {currentPage === "dialogue" && currentScenario && (
-        <DialoguePage dialogues={currentScenario.dialogues} onBack={handleBack} />
+        <DialoguePage
+          dialogues={currentScenario.dialogues}
+          onBack={handleBack}
+        />
       )}
 
       {currentPage === "vocabulary" && <VocabularyPage onBack={handleBack} />}
     </div>
-  )
+  );
 }
 
 export default function App() {
@@ -59,5 +70,5 @@ export default function App() {
     <AppProvider>
       <AppContent />
     </AppProvider>
-  )
+  );
 }
